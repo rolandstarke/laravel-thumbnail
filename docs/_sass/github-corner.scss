@@ -2,6 +2,12 @@
     animation: octocat-wave 560ms ease-in-out
 }
 
+@media (max-width:970px) {
+    .github-corner svg {
+        position: fixed !important;
+    }
+}
+
 @keyframes octocat-wave {
 
     0%,
