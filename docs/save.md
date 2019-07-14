@@ -8,7 +8,7 @@ title: Thumbnail::save
 ## Description
 
 ```php
- public Thumbnail::save( void ): self
+public Thumbnail::save( void ): self
 ```
 
 Generates the Thumbnail and stores it in the configured destination.

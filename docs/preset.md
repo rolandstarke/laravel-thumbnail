@@ -8,7 +8,7 @@ title: Thumbnail::preset
 ## Description
 
 ```php
- public Thumbnail::preset( string $preset ): self
+public Thumbnail::preset( string $preset ): self
 ```
 
 The thumbnail will be generated with the configured preset.

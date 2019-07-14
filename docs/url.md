@@ -8,7 +8,7 @@ title: Thumbnail::url
 ## Description
 
 ```php
- public Thumbnail::url( void ): string
+public Thumbnail::url( void ): string
 ```
 
 Generates the signed URL for the thumbnail with all the params previously set.

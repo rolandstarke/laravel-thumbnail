@@ -8,7 +8,7 @@ title: Thumbnail::response
 ## Description
 
 ```php
- public Thumbnail::response( void ): Illuminate\Http\Response
+public Thumbnail::response( void ): Illuminate\Http\Response
 ```
 
 Generates the Thumbnail and sends a HTTP response.

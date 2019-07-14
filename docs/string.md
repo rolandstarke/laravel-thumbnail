@@ -8,7 +8,7 @@ title: Thumbnail::string
 ## Description
 
 ```php
- public Thumbnail::string( void ): string
+public Thumbnail::string( void ): string
 ```
 
 Generates the Thumbnail and returns the binary data as a string.
