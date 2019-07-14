@@ -1,0 +1,38 @@
+{
+    "name": "rolandstarke/laravel-thumbnail",
+    "description": "Laravel Thumbnail generator",
+    "keywords": ["laravel", "image", "thumbnail"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roland Starke"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "intervention/image": "^2.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rolandstarke\\Thumbnail\\ThumbnailServiceProvider"
+            ],
+            "aliases": {
+                "Thumbnail": "Rolandstarke\\Thumbnail\\Facades\\Thumbnail"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Rolandstarke\\Thumbnail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rolandstarke\\Thumbnail\\Tests\\": "tests/"
+        }
+    }
+}
