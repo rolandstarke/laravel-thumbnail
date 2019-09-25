@@ -3,10 +3,7 @@
 namespace Rolandstarke\Thumbnail;
 
 use Rolandstarke\Thumbnail\Console\Commands\Purge;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Rolandstarke\Thumbnail\Http\Controller\ImageController;
 
 class ThumbnailServiceProvider extends ServiceProvider
 {
@@ -21,7 +18,7 @@ class ThumbnailServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../config/thumbnail.php', 'thumbnail'
         );
-        
+
         $this->app->bind(Thumbnail::class, function () {
             return new Thumbnail(config('thumbnail'));
         });
@@ -44,20 +41,6 @@ class ThumbnailServiceProvider extends ServiceProvider
             ]);
         }
 
-        $this->registerRoutes();
-    }
-
-    protected function registerRoutes()
-    {
-        foreach (config('thumbnail.presets', []) as $presetName => $preset) {
-            if (is_array($preset) && isset($preset['destination'])) {
-                $url = Storage::disk($preset['destination']['disk'])->url($preset['destination']['path'] . '{file}');
-                $route = parse_url($url, PHP_URL_PATH);
-
-                Route::get($route, ImageController::class . '@index')
-                    ->where('file', '.+')
-                    ->defaults('preset', $presetName);
-            }
-        }
+        $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
     }
 }
