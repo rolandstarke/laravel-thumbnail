@@ -38,7 +38,7 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 echo \Thumbnail::src('/path/to/file.jpg')->url();
 
 //load from website
-echo \Thumbnail::src('https://laravel.com/favicon.png')->url();
+echo \Thumbnail::src('https://picsum.photos/200')->url();
 
 //load from laravels pubic directory
 echo \Thumbnail::src(public_path('favicon.png'))->url();
