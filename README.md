@@ -52,7 +52,7 @@ composer require rolandstarke/laravel-thumbnail
     \Thumbnail::src('userimage.jpg', 'local' /* disk */);
 
     //load image from website
-    \Thumbnail::src('https://laravel.com/favicon.png')
+    \Thumbnail::src('https://picsum.photos/200');
 ?>
 ```
 
