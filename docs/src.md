@@ -8,7 +8,7 @@ title: Thumbnail::src
 ## Description
 
 ```php
-public Thumbnail::src( string $path [, string $disk = null] ): self
+public Thumbnail::src( string $path [, string $disk = NULL ] ): self
 ```
 
 Sets the source image.

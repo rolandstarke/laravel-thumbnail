@@ -8,7 +8,7 @@ title: Thumbnail::blur
 ## Description
 
 ```php
-public Thmbnail::blur( [int $amount = 1] ): self
+public Thmbnail::blur( [ int $amount = 1 ] ): self
 ```
 
 Apply a gaussian blur filter with a optional amount on the current image. Use values between 0 and 100.

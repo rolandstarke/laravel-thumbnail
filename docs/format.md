@@ -8,7 +8,7 @@ title: Thumbnail::format
 ## Description
 
 ```php
-public Thmbnail::format( string $format [, int $quality = null] ): self
+public Thmbnail::format( string $format [, int $quality = NULL ] ): self
 ```
 
 Sets the output format and quality. By default the source format is used.
