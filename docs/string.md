@@ -8,14 +8,16 @@ title: Thumbnail::string
 ## Description
 
 ```php
-public Thumbnail::string( void ): string
+public Thumbnail::string( [ bool $useExisting = TRUE ] ): string
 ```
 
 Generates the Thumbnail and returns the binary data as a string.
 
 ## Paremeters
 
-none
+### useExisting
+
+When **TRUE** load the existing thumbnail, when **FALSE** generate new thumbnail from source image.
 
 ## Return Values
 

@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Rolandstarke\Thumbnail\Filter\FilterInterface;
-use Rolandstarke\Thumbnail\Filter\Resize;
 
 
 class Thumbnail
@@ -104,26 +103,31 @@ class Thumbnail
         return $this;
     }
 
-    public function url(): string
+    public function url(bool $ensurePresence = false): string
     {
-        $destination = $this->config['presets'][$this->preset]['destination'];
-
         if ($this->source === null) {
             throw new Exception('can not get thumbnail url, set source image first ');
         }
 
+        $destination = $this->config['presets'][$this->preset]['destination'];
+        $outputPath = $destination['path'] . $this->getOutputFilename();
+
+        if ($ensurePresence && !Storage::disk($destination['disk'])->exists($outputPath)) {
+            $this->save();
+        }
+
         return Storage::disk($destination['disk'])
-            ->url($destination['path'] . $this->getOutputFilename() . '?' . http_build_query($this->getUrlParams()));
+            ->url($outputPath . '?' . http_build_query($this->getUrlParams()));
     }
 
-    public function response(): \Symfony\Component\HttpFoundation\Response
+    public function response(bool $useExisting = true): \Symfony\Component\HttpFoundation\Response
     {
-        return response($this->getRenderedImage(), 200, ['content-type' => $this->getContentType()]);
+        return response($this->getRenderedImage($useExisting), 200, ['content-type' => $this->getContentType()]);
     }
 
-    public function string(): string
+    public function string(bool $useExisting = true): string
     {
-        return $this->getRenderedImage();
+        return $this->getRenderedImage($useExisting);
     }
 
     public function save(): self
@@ -148,8 +152,8 @@ class Thumbnail
     }
 
     /**
-     * @internal
      * @throws Exception
+     * @internal
      */
     public function setParamsFromUrl(array $urlParams): self
     {
@@ -168,10 +172,26 @@ class Thumbnail
     }
 
 
-    protected function getRenderedImage(): string
+    protected function getRenderedImage(bool $useExisting = false): string
     {
         if ($this->renderedImage === null) {
-            $this->render();
+
+            if ($useExisting) {
+                $destination = $this->config['presets'][$this->preset]['destination'];
+                $outputPath = $destination['path'] . $this->getOutputFilename();
+
+                try {
+                    $this->renderedImage = Storage::disk($destination['disk'])->get($outputPath);
+                } catch (Exception $exception) {
+                    $this->renderedImage = null;
+                }
+
+                if (!$this->renderedImage) {
+                    $this->save();
+                }
+            } else {
+                $this->render();
+            }
         }
         return $this->renderedImage;
     }
@@ -198,7 +218,7 @@ class Thumbnail
             }
         }
 
-        $this->renderedImage = (string) $image->encode($this->getFormat(), Arr::get($params, 'quality'));
+        $this->renderedImage = (string)$image->encode($this->getFormat(), Arr::get($params, 'quality'));
         return $this;
     }
 
@@ -252,16 +272,16 @@ class Thumbnail
     protected function getContentType(): string
     {
         return Arr::get([
-            'jpg'  => 'image/jpeg',
+            'jpg' => 'image/jpeg',
             'jpeg' => 'image/jpeg',
-            'png'  => 'image/png',
+            'png' => 'image/png',
             'webp' => 'image/webp',
-            'ico'  => 'image/x-icon',
-            'gif'  => 'image/gif',
+            'ico' => 'image/x-icon',
+            'gif' => 'image/gif',
             'tiff' => 'image/tiff',
-            'tif'  => 'image/tiff',
-            'bmp'  => 'image/bmp',
-            'psd'  => 'image/vnd.adobe.photoshop',
+            'tif' => 'image/tiff',
+            'bmp' => 'image/bmp',
+            'psd' => 'image/vnd.adobe.photoshop',
         ], $this->getFormat());
     }
 }

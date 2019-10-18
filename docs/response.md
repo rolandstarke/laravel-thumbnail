@@ -8,14 +8,17 @@ title: Thumbnail::response
 ## Description
 
 ```php
-public Thumbnail::response( void ): Illuminate\Http\Response
+public Thumbnail::response( [ bool $useExisting = TRUE ] ): Illuminate\Http\Response
 ```
 
 Generates the Thumbnail and sends a HTTP response.
 
 ## Paremeters
 
-none
+### useExisting
+
+When **TRUE** load the existing thumbnail, when **FALSE** generate new thumbnail from source image.
+
 
 ## Return Values
 

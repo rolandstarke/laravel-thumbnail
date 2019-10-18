@@ -8,14 +8,17 @@ title: Thumbnail::url
 ## Description
 
 ```php
-public Thumbnail::url( void ): string
+public Thumbnail::url( [ bool $ensurePresence = FALSE ] ): string
 ```
 
 Generates the signed URL for the thumbnail with all the params previously set.
 
 ## Paremeters
 
-none
+### ensurePresence
+
+When **TRUE** check if the thumbnail exists and generate it if needed.
+
 
 ## Return Values
 

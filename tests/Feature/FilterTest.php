@@ -23,7 +23,7 @@ class FilterTest extends TestCase
         $app['config']->set('thumbnail', $config);
     }
 
-    public function testShouldcropImage()
+    public function testShouldCropImage()
     {
         $url = Thumbnail::preset('test')
             ->src(self::TEST_IMAGE, 'public')
@@ -40,7 +40,7 @@ class FilterTest extends TestCase
         Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
-    public function testShouldsmartcropImage()
+    public function testShouldSmartcropImage()
     {
         $url = Thumbnail::preset('test')
             ->src(self::TEST_IMAGE, 'public')
