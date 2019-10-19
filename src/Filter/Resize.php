@@ -27,11 +27,15 @@ class Resize implements FilterInterface
         }
 
         if (isset($params['widen'])) {
-            $image->widen((int) $params['widen']);
+            $image->widen((int)$params['widen'], function ($constraint) {
+                $constraint->upsize();
+            });
         }
 
         if (isset($params['heighten'])) {
-            $image->heighten((int) $params['heighten']);
+            $image->heighten((int)$params['heighten'], function ($constraint) {
+                $constraint->upsize();
+            });
         }
 
         return $image;
