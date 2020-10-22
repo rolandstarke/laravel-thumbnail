@@ -142,6 +142,17 @@ class Thumbnail
         return $this;
     }
 
+    public function delete(): self
+    {
+        $destination = $this->config['presets'][$this->preset]['destination'];
+
+        Storage::disk($destination['disk'])->delete(
+            $destination['path'] . $this->getOutputFilename()
+        );
+
+        return $this;
+    }
+
 
     /**
      * @internal
