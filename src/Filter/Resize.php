@@ -18,7 +18,11 @@ class Resize implements FilterInterface
             ]);
             $res = $smartcrop->analyse();
             $topCrop = $res['topCrop'];
-            $image->crop(min($topCrop['width'], $width), min($topCrop['height'], $height), $topCrop['x'], $topCrop['y']);
+            if ($topCrop) {
+                $image->crop(min($topCrop['width'], $width), min($topCrop['height'], $height), $topCrop['x'], $topCrop['y']);
+            } else {
+                $image->crop($width, $height);
+            }
         }
 
         if (isset($params['crop'])) {
