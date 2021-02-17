@@ -220,6 +220,11 @@ class Thumbnail
 
         $image = Image::make($this->source->getImage());
 
+        // try to adjusts image orientation automatically
+        try {
+            $image = $image->orientate();
+        } catch (\Exception $e) {}
+
         foreach (Arr::get($this->config, 'filters', []) as $filterClassName) {
             $filter = \Illuminate\Support\Facades\App::make($filterClassName);
             if ($filter instanceof FilterInterface) {
