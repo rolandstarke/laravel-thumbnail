@@ -29,7 +29,7 @@ class ThumbnailTest extends TestCase
         $thumbnail = new Thumbnail($this->getConfig());
         $imageUrl = $thumbnail->src('http://example.com/image.jpeg')->url();
 
-        $this->assertContains('example.com', $imageUrl);
+        $this->assertStringContainsString('example.com', $imageUrl);
     }
 
     public function testShouldWorkWithPath()
@@ -37,7 +37,7 @@ class ThumbnailTest extends TestCase
         $thumbnail = new Thumbnail($this->getConfig());
         $imageUrl = $thumbnail->src(public_path('/test-images/image.jpg'))->url();
 
-        $this->assertContains('image.jpg', $imageUrl);
+        $this->assertStringContainsString('image.jpg', $imageUrl);
     }
 
     public function testShouldWorkWithDisk()
@@ -45,7 +45,7 @@ class ThumbnailTest extends TestCase
         $thumbnail = new Thumbnail($this->getConfig());
         $imageUrl = $thumbnail->src('/test-images/image.jpg', 'public')->url();
 
-        $this->assertContains('image.jpg', $imageUrl);
+        $this->assertStringContainsString('image.jpg', $imageUrl);
     }
 
     public function testShouldSetParams()
@@ -56,7 +56,7 @@ class ThumbnailTest extends TestCase
             ->param('testparam', 'testvalue')
             ->url();
 
-        $this->assertContains('testparam=testvalue', $imageUrl);
+        $this->assertStringContainsString('testparam=testvalue', $imageUrl);
     }
 
     public function testSameParamsShouldResultInSameUrl()
