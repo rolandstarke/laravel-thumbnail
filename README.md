@@ -26,7 +26,7 @@ Laravel package to resize images with specially formatted URLs.
 
 ### Requirements
 
-- GD Library
+- GD Library or Imagick
 - php >= 7.1.3
 - laravel >= 5.5
 
