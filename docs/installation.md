@@ -7,7 +7,7 @@ title: Installation
 
 ## Requirements
 
-- GD Library
+- GD Library or Imagick
 - PHP >= 7.1.3
 - Laravel >= 5.5
 
