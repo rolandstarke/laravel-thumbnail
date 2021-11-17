@@ -14,17 +14,10 @@ title: Installation
 *For Ubuntu you can install the GD Graphics Library with:*
 
 ```bash
-#php 7.1
-sudo apt-get install php7.1-gd
-
-#php 7.2
-sudo apt-get install php7.2-gd
-
-#php 7.3
-sudo apt-get install php7.3-gd
+sudo apt-get install php-gd
 ```
 
-Check that your `APP_URL` in `.env` is set correctly.
+Check that your `APP_URL` in `.env` is set correctly. (If you use `php artisan serve` make sure to add the port like `http://localhost:8000` else the images will not load.)
 
 ## Composer Installation
 
