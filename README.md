@@ -76,6 +76,12 @@ Deletes the generated thumbnails.
 php artisan thumbnail:purge
 ```
 
+## Tests
+
+```php
+php vendor/bin/phpunit
+```
+
 ## License
 
 [MIT](LICENSE)

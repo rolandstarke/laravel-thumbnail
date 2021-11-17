@@ -3,10 +3,7 @@
 namespace Rolandstarke\Thumbnail\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Session\SessionManager;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
-use Rolandstarke\Thumbnail\Http\Controller\ImageController;
 
 class Purge extends Command
 {
@@ -37,10 +34,9 @@ class Purge extends Command
     /**
      * Execute the console command.
      *
-     * @param SessionManager $sessionManager
      * @return mixed
      */
-    public function handle(SessionManager $sessionManager)
+    public function handle()
     {
         foreach (config('thumbnail.presets', []) as $presetName => $preset) {
             if (
