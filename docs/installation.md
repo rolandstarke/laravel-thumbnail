@@ -14,7 +14,7 @@ title: Installation
 *For Ubuntu you can install the GD Graphics Library with:*
 
 ```bash
-sudo apt-get install php-gd
+sudo apt install php-gd
 ```
 
 Check that your `APP_URL` in `.env` is set correctly. (If you use `php artisan serve` make sure to add the port like `http://localhost:8000` else the images will not load.)
