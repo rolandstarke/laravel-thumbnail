@@ -1,7 +1,6 @@
 
 # Laravel Thumbnail
 
-[![Build Status](https://travis-ci.org/rolandstarke/laravel-thumbnail.svg?branch=master)](https://travis-ci.org/rolandstarke/laravel-thumbnail)
 [![PHP Version](https://img.shields.io/packagist/php-v/rolandstarke/laravel-thumbnail.svg)](https://github.com/rolandstarke/laravel-thumbnail/blob/master/composer.json)
 [![Latest Stable Version](https://poser.pugx.org/rolandstarke/laravel-thumbnail/v/stable)](https://packagist.org/packages/rolandstarke/laravel-thumbnail)
 [![LICENSE](https://img.shields.io/packagist/l/rolandstarke/laravel-thumbnail.svg)](https://github.com/rolandstarke/laravel-thumbnail/blob/master/LICENSE)
