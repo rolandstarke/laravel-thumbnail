@@ -109,9 +109,18 @@ class Source
         if ($this->disk) {
             return Storage::disk($this->disk)->get($this->path);
         } else {
-            $content = file_get_contents($this->path);
+            $path = $this->path;
+
+            //if we got an url lets encode it
+            if (Str::startsWith($this->path, ['http://', 'https://'])) {
+                $path = preg_replace_callback('#://([^/]+)/([^?]+)#', function ($match) {
+                    return '://' . $match[1] . '/' . implode('/', array_map('rawurlencode', explode('/', $match[2])));
+                }, $path);
+            }
+
+            $content = file_get_contents($path);
             if ($content === false) {
-                throw new Exception('Could not get file content for path "' . $this->path . '"');
+                throw new Exception('Could not get file content for path "' . $path . '"');
             }
             return $content;
         }

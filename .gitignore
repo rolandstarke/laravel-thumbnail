@@ -3,3 +3,4 @@
 /storage/logs
 /storage/app/public/tests
 .idea/
+.phpunit.result.cache
