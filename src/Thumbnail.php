@@ -265,8 +265,11 @@ class Thumbnail
         ksort($params);
         $salt = Arr::get($this->config, 'signing_key', '');
 
-        return (substr_replace(base_convert(md5(http_build_query($params) . $salt), 16, 36), '/', 3, 0)
-            . '.' . $this->getFormat());
+        $filename = base_convert(md5(http_build_query($params) . $salt), 16, 36) . '.' . $this->getFormat();
+        $filename = substr_replace($filename, '/', 4, 0);
+        $filename = substr_replace($filename, '/', 2, 0);
+
+        return $filename;
     }
 
     protected function getFormat(): string
