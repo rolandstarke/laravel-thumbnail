@@ -13,6 +13,6 @@ class Thumbnail extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return static::$app[\Rolandstarke\Thumbnail\Thumbnail::class];
+        return \Rolandstarke\Thumbnail\Thumbnail::class;
     }
 }
