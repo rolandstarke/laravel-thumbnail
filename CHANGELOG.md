@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.6] - 2022-09-23
+
+### Fixed
+
+- Removed Deprecated Error when `APP_KEY` was not set
+
 ## [1.0.5] - 2022-03-15
 
 ### Fixed

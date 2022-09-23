@@ -6,7 +6,7 @@ return [
      * Reject attempts to maliciously create images by signing the generated
      * request with a hash based on the request parameters and this signing key.
      */
-    'signing_key' => sha1(env('APP_KEY')),
+    'signing_key' => sha1(env('APP_KEY', '')),
 
 
     /**
@@ -15,12 +15,12 @@ return [
      */
     'memory_limit' => '1024M',
 
-    
+
     /**
      * Load the original images from the following sources.
-     * 
-     * Hint: When using `Thumbnail::src(...)->url()` You will get shorter urls 
-     *       if you add the subdir you are loading the image from. 
+     *
+     * Hint: When using `Thumbnail::src(...)->url()` You will get shorter urls
+     *       if you add the subdir you are loading the image from.
      *       E.g. add `storage_path('/useruploads')` instead of `storage_path('/')`.
      */
     'allowedSources' => [
@@ -43,7 +43,7 @@ return [
         'default' => [
             /**
              * Store the generated images here.
-             * 
+             *
              * Note: Every preset needs an unique path.
              */
             'destination' => ['disk' => 'public', 'path' => '/thumbnails/default/'],
