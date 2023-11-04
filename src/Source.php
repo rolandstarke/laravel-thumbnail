@@ -44,6 +44,10 @@ class Source
     {
         $params = null;
 
+        if ($disk && !Str::startsWith($path, '/')) {
+            $path = '/' . $path;
+        }
+
         foreach ($this->allowedSources as $sourceKey => $allowedSource) {
             if ($disk) {
                 if (Arr::get($allowedSource, 'disk') !== $disk) {
