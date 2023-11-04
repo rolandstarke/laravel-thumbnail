@@ -1,10 +1,10 @@
 # Changelog
 
-## [1.0.7] - 2023-11-04
+## [1.0.8] - 2023-11-04
 
 ### Fixed
 
-- Resolved an issue where files from the disk could not be loaded without a leading slash.
+- The path on the allowed sources now allows an empty string instead of "/". This way you can access files without the leading slash on disks now.
 
 ## [1.0.6] - 2022-09-23
 
