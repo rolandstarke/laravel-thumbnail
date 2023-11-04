@@ -21,7 +21,7 @@ Absolute path of the source image.
 
 ### disk
 
-The [filesystem](https://laravel.com/docs/filesystem){:target="_blank"} diskname to load the image from. If not set will loead the file without laravels filesystem.
+The [filesystem](https://laravel.com/docs/filesystem){:target="_blank"} diskname to load the image from. If not set will load the file without laravels filesystem.
 
 ## Return Values
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.7] - 2023-11-04
+
+### Fixed
+
+- Resolved an issue where files from the disk could not be loaded without a leading slash.
+
 ## [1.0.6] - 2022-09-23
 
 ### Fixed
