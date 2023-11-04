@@ -25,5 +25,5 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 
 ```php {% raw  %}
 <?php
-    \Thumbnail::src('/cat.jpg', 'public')->delete();
+    \Thumbnail::src('cat.jpg', 'public')->delete();
 {% endraw  %} ```

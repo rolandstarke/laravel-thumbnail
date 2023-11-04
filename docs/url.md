@@ -27,10 +27,10 @@ URL to the thumbnail.
 ## Examples
 
 ```php {% raw  %}
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->url() }}">
 
 <?php
 
-echo \Thumbnail::src('/cat.jpg', 'public')->url();
+echo \Thumbnail::src('cat.jpg', 'public')->url();
 // http:localhost:8000/storage/thumbnails/default/87tg/jh2tydgkc80skg88sokwc.jpg?p=cat.jpg&s=pd
 {% endraw  %} ```

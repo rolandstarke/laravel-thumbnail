@@ -8,10 +8,10 @@ title: Image crop library for Laravel
 ![image](assets/img/desert.jpg) ![image resized](assets/img/desert_resized.jpg)
 
 ```html {% raw  %}
-<img src="{{ Storage::disk('public')->url('/desert.jpg') }}">
+<img src="{{ Storage::disk('public')->url('desert.jpg') }}">
 <!-- <img src="/storage/desert.jpg"> -->
 
-<img src="{{ Thumbnail::src('/desert.jpg', 'public')->smartcrop(200, 200)->url() }}">
+<img src="{{ Thumbnail::src('desert.jpg', 'public')->smartcrop(200, 200)->url() }}">
 <!-- <img src="/storage/jhf47.jpg?src=desert.jpg&smartcrop=200x200"> -->
 {% endraw  %} ```
 

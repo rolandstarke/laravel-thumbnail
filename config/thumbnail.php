@@ -21,7 +21,7 @@ return [
      *
      * Hint: When using `Thumbnail::src(...)->url()` You will get shorter urls
      *       if you add the subdir you are loading the image from.
-     *       E.g. add `storage_path('/useruploads')` instead of `storage_path('/')`.
+     *       E.g. add `storage_path('useruploads')` instead of `storage_path()`.
      */
     'allowedSources' => [
         'a' => app_path(),
@@ -30,8 +30,8 @@ return [
         's' => storage_path(),
         'http' => 'http://', //allow images to be loaded from http
         'https' => 'https://',
-        'ld' => ['disk' => 'local', 'path' => '/'], //allow images to be loaded from `Storage::disk('local')`
-        'pd' => ['disk' => 'public', 'path' => '/'],
+        'ld' => ['disk' => 'local', 'path' => ''], //allow images to be loaded from `Storage::disk('local')`
+        'pd' => ['disk' => 'public', 'path' => ''],
     ],
 
 
@@ -46,12 +46,12 @@ return [
              *
              * Note: Every preset needs an unique path.
              */
-            'destination' => ['disk' => 'public', 'path' => '/thumbnails/default/'],
+            'destination' => ['disk' => 'public', 'path' => 'thumbnails/default/'],
         ],
 
         //add more presets e.g. "avatar".
         'avatar' => [
-            'destination' => ['disk' => 'public', 'path' => '/thumbnails/avatar/'],
+            'destination' => ['disk' => 'public', 'path' => 'thumbnails/avatar/'],
             /**
              * add default params for this preset
              */

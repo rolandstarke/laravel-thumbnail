@@ -31,7 +31,7 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 
     'presets' => [
         'avatar' => [
-            'destination' => ['disk' => 'public', 'path' => '/thumbnails/avatar/'],
+            'destination' => ['disk' => 'public', 'path' => 'thumbnails/avatar/'],
             'smartcrop' => '64x64',
         ],
     ],
@@ -39,7 +39,7 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 
 //inside a blade file
 
-    <img src="{{ Thumbnail::preset('avatar')->src('/cat.jpg', 'public')->url() }}">
+    <img src="{{ Thumbnail::preset('avatar')->src('cat.jpg', 'public')->url() }}">
 
     //the url will automaticaly have the param smartcrop=64x64
 {% endraw  %} ```

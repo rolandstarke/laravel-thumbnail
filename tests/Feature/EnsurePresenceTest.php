@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class EnsurePresenceTest extends TestCase
 {
 
-    const TEST_IMAGE = '/test-images/desert.jpg';
+    const TEST_IMAGE = 'test-images/desert.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -18,21 +18,21 @@ class EnsurePresenceTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/ensure-presence/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/ensure-presence/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }
 
     public function testShouldGenerateImageWithoutCallingUrlImage()
     {
-        Storage::disk('public')->deleteDirectory('/tests/feature/ensure-presence/cache/');
+        Storage::disk('public')->deleteDirectory('tests/feature/ensure-presence/cache/');
 
         Thumbnail::preset('test')
             ->src(self::TEST_IMAGE, 'public')
             ->crop(60, 50)
             ->url(true);
 
-        $files = Storage::disk('public')->allFiles('/tests/feature/ensure-presence/cache/');
+        $files = Storage::disk('public')->allFiles('tests/feature/ensure-presence/cache/');
         $this->assertCount(1, $files);
 
         $image = Image::make(Storage::disk('public')->get($files[0]));

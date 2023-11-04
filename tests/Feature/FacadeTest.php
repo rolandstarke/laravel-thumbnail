@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class FacadeTest extends TestCase
 {
 
-    const TEST_IMAGE = '/test-images/desert.jpg';
+    const TEST_IMAGE = 'test-images/desert.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -18,7 +18,7 @@ class FacadeTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/facade/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/facade/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }

@@ -30,6 +30,6 @@ Illuminate\Http\Response with the corresponding header fields already set.
 <?php
 
 Route::get('/', function() {
-    return \Thumbnail::src('/cat.jpg', 'public')->response();
+    return \Thumbnail::src('cat.jpg', 'public')->response();
 });
 {% endraw  %} ```

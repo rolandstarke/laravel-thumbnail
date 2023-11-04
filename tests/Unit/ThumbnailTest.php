@@ -13,8 +13,8 @@ class ThumbnailTest extends TestCase
         return [
             'allowedSources' => [
                 'http' => 'http',
-                'disk' => ['disk' => 'public', 'path' => '/test-images/'],
-                'dir' => public_path('/test-images/')
+                'disk' => ['disk' => 'public', 'path' => 'test-images/'],
+                'dir' => public_path('test-images/')
             ],
             'presets' => [
                 'default' => [
@@ -35,7 +35,7 @@ class ThumbnailTest extends TestCase
     public function testShouldWorkWithPath()
     {
         $thumbnail = new Thumbnail($this->getConfig());
-        $imageUrl = $thumbnail->src(public_path('/test-images/image.jpg'))->url();
+        $imageUrl = $thumbnail->src(public_path('test-images/image.jpg'))->url();
 
         $this->assertStringContainsString('image.jpg', $imageUrl);
     }
@@ -43,7 +43,7 @@ class ThumbnailTest extends TestCase
     public function testShouldWorkWithDisk()
     {
         $thumbnail = new Thumbnail($this->getConfig());
-        $imageUrl = $thumbnail->src('/test-images/image.jpg', 'public')->url();
+        $imageUrl = $thumbnail->src('test-images/image.jpg', 'public')->url();
 
         $this->assertStringContainsString('image.jpg', $imageUrl);
     }

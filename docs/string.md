@@ -27,6 +27,6 @@ String representation of image.
 
 ```php {% raw  %}
 <?php
-    $data = \Thumbnail::src('/cat.jpg', 'public')->string();
+    $data = \Thumbnail::src('cat.jpg', 'public')->string();
     file_put_contents('mycat.jpg', $data);
 {% endraw  %} ```

@@ -44,10 +44,6 @@ class Source
     {
         $params = null;
 
-        if ($disk && !Str::startsWith($path, '/')) {
-            $path = '/' . $path;
-        }
-
         foreach ($this->allowedSources as $sourceKey => $allowedSource) {
             if ($disk) {
                 if (Arr::get($allowedSource, 'disk') !== $disk) {
@@ -61,7 +57,7 @@ class Source
                 $allowedPath = $allowedSource;
             }
 
-            if (Str::startsWith($path, $allowedPath)) {
+            if (Str::startsWith($path, $allowedPath) || empty($allowedPath)) {
                 $relativePath = substr($path, strlen($allowedPath));
                 if (!$params || strlen($params['p']) > strlen($relativePath)) {
                     $params = ['p' => $relativePath, 's' => $sourceKey];

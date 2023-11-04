@@ -41,8 +41,8 @@ Memory limit that will be set when creating a thumbnail.
     's' => storage_path(),
     'http' => 'http://', //allow images to be loaded from http
     'https' => 'https://',
-    'ld' => ['disk' => 'local', 'path' => '/'], //allow images to be loaded from `Storage::disk('local')`
-    'pd' => ['disk' => 'public', 'path' => '/'],
+    'ld' => ['disk' => 'local', 'path' => ''], //allow images to be loaded from `Storage::disk('local')`
+    'pd' => ['disk' => 'public', 'path' => ''],
 ],
 ```
 
@@ -55,7 +55,7 @@ The directories where source images are found. Can be either an absolute path or
 ```php
 'presets' => [
     'avatar' => [
-        'destination' => ['disk' => 'public', 'path' => '/thumbnails/avatar/'],
+        'destination' => ['disk' => 'public', 'path' => 'thumbnails/avatar/'],
         //add default parameters
         'smartcrop' => '64x64',
     ],

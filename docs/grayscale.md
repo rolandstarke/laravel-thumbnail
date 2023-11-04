@@ -24,7 +24,7 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 ## Examples
 
 ```php {% raw  %}
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->grayscale()->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->grayscale()->url() }}">
 
 <?php
     //inside config/thumbnail.php

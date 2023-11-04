@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FormatTest extends TestCase
 {
+    const TEST_IMAGE = 'test-images/cat.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -16,7 +17,7 @@ class FormatTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/format/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/format/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }
@@ -24,7 +25,7 @@ class FormatTest extends TestCase
     public function testJpegInJpegOut()
     {
         $url = Thumbnail::preset('test')
-            ->src('/test-images/cat.jpg', 'public')
+            ->src(self::TEST_IMAGE, 'public')
             ->format('jpeg')
             ->url();
         $response = $this->call('GET', $url);
@@ -32,13 +33,13 @@ class FormatTest extends TestCase
 
         $image = Image::make($response->getContent());
 
-        Storage::disk('public')->put('/tests/feature/format/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/format/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
     public function testJpegQuality()
     {
         $url = Thumbnail::preset('test')
-            ->src('/test-images/cat.jpg', 'public')
+            ->src(self::TEST_IMAGE, 'public')
             ->format('jpeg', 95)
             ->url();
         $response = $this->call('GET', $url);
@@ -46,12 +47,12 @@ class FormatTest extends TestCase
 
         Image::make($response->getContent());
 
-        Storage::disk('public')->put('/tests/feature/format/' . __FUNCTION__ . '_good.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/format/' . __FUNCTION__ . '_good.jpg', $response->getContent());
 
         $goodImageSize = strlen($response->getContent());
 
         $url = Thumbnail::preset('test')
-            ->src('/test-images/cat.jpg', 'public')
+            ->src(self::TEST_IMAGE, 'public')
             ->format('jpeg', 10)
             ->url();
         $response = $this->call('GET', $url);
@@ -59,11 +60,11 @@ class FormatTest extends TestCase
 
         $image = Image::make($response->getContent());
 
-        Storage::disk('public')->put('/tests/feature/format/' . __FUNCTION__ . '_bad.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/format/' . __FUNCTION__ . '_bad.jpg', $response->getContent());
 
         $badImageSize = strlen($response->getContent());
 
-        
+
         $this->assertGreaterThan($badImageSize, $goodImageSize);
     }
 }

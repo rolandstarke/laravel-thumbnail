@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class FilterTest extends TestCase
 {
 
-    const TEST_IMAGE = '/test-images/desert.jpg';
+    const TEST_IMAGE = 'test-images/desert.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -18,7 +18,7 @@ class FilterTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/filter/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/filter/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }
@@ -37,7 +37,7 @@ class FilterTest extends TestCase
         $this->assertEquals(60, $image->getWidth());
         $this->assertEquals(50, $image->getHeight());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
     public function testShouldSmartcropImage()
@@ -54,7 +54,7 @@ class FilterTest extends TestCase
         $this->assertEquals(200, $image->getWidth());
         $this->assertEquals(200, $image->getHeight());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
     public function testShouldBlurImage()
@@ -68,7 +68,7 @@ class FilterTest extends TestCase
 
         $image = Image::make($response->getContent());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
     public function testShouldGreyscaleImage()
@@ -82,7 +82,7 @@ class FilterTest extends TestCase
 
         $image = Image::make($response->getContent());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 
     public function testShouldWidenImage()
@@ -98,7 +98,7 @@ class FilterTest extends TestCase
 
         $this->assertEquals(30, $image->getWidth());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
 
     }
 
@@ -115,7 +115,7 @@ class FilterTest extends TestCase
 
         $this->assertEquals(30, $image->getHeight());
 
-        Storage::disk('public')->put('/tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
+        Storage::disk('public')->put('tests/feature/filter/' . __FUNCTION__ . '.jpg', $response->getContent());
     }
 }
 

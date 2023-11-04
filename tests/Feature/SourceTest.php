@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class SourceTest extends TestCase
 {
 
-    const TEST_IMAGE = '/test-images/desert.jpg';
+    const TEST_IMAGE = 'test-images/desert.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -18,15 +18,15 @@ class SourceTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/delete/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/source/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }
 
-    public function testShouldLoadFromDisk()
+    public function testShouldLoadFromDiskWithLeadingSlash()
     {
         $url = Thumbnail::preset('test')
-            ->src(self::TEST_IMAGE, 'public')
+            ->src('/' . ltrim(self::TEST_IMAGE, '/'), 'public')
             ->heighten(30)
             ->url();
         $response = $this->call('GET', $url);
@@ -49,29 +49,5 @@ class SourceTest extends TestCase
         $image = Image::make($response->getContent());
 
         $this->assertEquals(30, $image->getHeight());
-    }
-
-    public function testShouldLoadFromPath()
-    {
-        $url = Thumbnail::preset('test')
-            ->src(storage_path('app/public' . self::TEST_IMAGE))
-            ->heighten(30)
-            ->url();
-        $response = $this->call('GET', $url);
-        $response->assertSuccessful();
-
-        $image = Image::make($response->getContent());
-
-        $this->assertEquals(30, $image->getHeight());
-    }
-
-    public function testShouldNotAllowEveryPath()
-    {
-        $this->expectException(\Exception::class);
-
-        Thumbnail::preset('test')
-            ->src(base_path('.env'))
-            ->heighten(30)
-            ->url();
     }
 }

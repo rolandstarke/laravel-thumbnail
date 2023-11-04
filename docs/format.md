@@ -30,7 +30,7 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 ## Examples
 
 ```php {% raw  %}
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->format('png')->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->format('png')->url() }}">
 
 <?php
     //inside config/thumbnail.php

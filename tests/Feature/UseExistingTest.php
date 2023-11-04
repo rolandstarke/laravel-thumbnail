@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class UseExistingTest extends TestCase
 {
 
-    const TEST_IMAGE = '/test-images/desert.jpg';
+    const TEST_IMAGE = 'test-images/desert.jpg';
 
     protected function getEnvironmentSetUp($app)
     {
@@ -18,14 +18,14 @@ class UseExistingTest extends TestCase
 
         $config = require(__DIR__ . '/../../config/thumbnail.php');
         $config['presets']['test'] = [
-            'destination' => ['disk' => 'public', 'path' => '/tests/feature/use-existing/cache/'],
+            'destination' => ['disk' => 'public', 'path' => 'tests/feature/use-existing/cache/'],
         ];
         $app['config']->set('thumbnail', $config);
     }
 
     public function testShouldCreateFileInDestination()
     {
-        Storage::disk('public')->deleteDirectory('/tests/feature/use-existing/cache/');
+        Storage::disk('public')->deleteDirectory('tests/feature/use-existing/cache/');
 
         $string = Thumbnail::preset('test')
             ->src(self::TEST_IMAGE, 'public')
@@ -38,7 +38,7 @@ class UseExistingTest extends TestCase
         $this->assertEquals(50, $image->getHeight());
 
 
-        $files = Storage::disk('public')->allFiles('/tests/feature/use-existing/cache/');
+        $files = Storage::disk('public')->allFiles('tests/feature/use-existing/cache/');
         $this->assertCount(1, $files);
 
         $image = Image::make(Storage::disk('public')->get($files[0]));
@@ -49,19 +49,19 @@ class UseExistingTest extends TestCase
 
     public function testShouldGiveImageAfterDeletingSource()
     {
-        Storage::disk('public')->deleteDirectory('/tests/feature/use-existing/cache/');
+        Storage::disk('public')->deleteDirectory('tests/feature/use-existing/cache/');
 
-        Storage::disk('public')->put('/tests/feature/use-existing/source-image.jpg', Storage::disk('public')->get(self::TEST_IMAGE));
+        Storage::disk('public')->put('tests/feature/use-existing/source-image.jpg', Storage::disk('public')->get(self::TEST_IMAGE));
 
         Thumbnail::preset('test')
-            ->src('/tests/feature/use-existing/source-image.jpg', 'public')
+            ->src('tests/feature/use-existing/source-image.jpg', 'public')
             ->crop(60, 50)
             ->string(true);
 
-        Storage::disk('public')->delete('/tests/feature/use-existing/source-image.jpg');
+        Storage::disk('public')->delete('tests/feature/use-existing/source-image.jpg');
 
         $string = Thumbnail::preset('test')
-            ->src('/tests/feature/use-existing/source-image.jpg', 'public')
+            ->src('tests/feature/use-existing/source-image.jpg', 'public')
             ->crop(60, 50)
             ->string(true);
 

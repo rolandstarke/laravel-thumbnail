@@ -28,11 +28,11 @@ Returns the `RolandStarke\Thumbnail\Thumbnail` object for method chaining.
 ## Examples
 
 ```php {% raw  %}
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->blur(1)->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->blur(1)->url() }}">
 
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->blur(10)->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->blur(10)->url() }}">
 
-<img src="{{ Thumbnail::src('/cat.jpg', 'public')->blur(50)->url() }}">
+<img src="{{ Thumbnail::src('cat.jpg', 'public')->blur(50)->url() }}">
 
 <?php
     //inside config/thumbnail.php
