@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.9] - 2025-04-13
+
+### Fixed
+
+- Implicit conversion from float to int loses precision and Creation of dynamic property is deprecated in Smartcrop.php
+
 ## [1.0.8] - 2023-11-04
 
 ### Fixed
