@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Implicit conversion from float to int loses precision and Creation of dynamic property is deprecated in `Smartcrop.php` ([#18](https://github.com/rolandstarke/laravel-thumbnail/issues/18))
+- Removed PHP Warnings/Notices: Implicit conversion from float to int loses precision and Creation of dynamic property is deprecated in `Smartcrop.php` ([#18](https://github.com/rolandstarke/laravel-thumbnail/issues/18))
 
 ## [1.0.8] - 2023-11-04
 
