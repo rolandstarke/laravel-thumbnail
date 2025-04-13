@@ -65,14 +65,14 @@ class Smartcrop
     'outsideImportance' => -0.5,
     'boostWeight' => 100.0,
     'ruleOfThirds' => true,
-    'prescale' => true,
+    'preScale' => true,
     'imageOperations' => null,
     'canvasFactory' => 'defaultCanvasFactory',
     'debug' => false
   ];
   public $options = [];
   public $scale;
-  public $prescale;
+  public $preScale;
   public $image;
   public $od = [];
   public $sample = [];
@@ -88,7 +88,7 @@ class Smartcrop
     }
 
     $this->scale = 1;
-    $this->prescale = 1;
+    $this->preScale = 1;
     $this->image = $image;
     $this->canvasImageScale();
   }
@@ -107,7 +107,7 @@ class Smartcrop
 
     $this->options['minScale'] = min($this->options['maxScale'], max(1 / $scale, $this->options['minScale']));
 
-    if ($this->options['prescale'] !== false) {
+    if ($this->options['preScale'] !== false) {
       $this->preScale = 1 / $scale / $this->options['minScale'];
       if ($this->preScale < 1) {
         $this->image->resize(ceil($imageOriginalWidth * $this->preScale), ceil($imageOriginalHeight * $this->preScale));
@@ -371,7 +371,9 @@ class Smartcrop
    */
   protected function thirds($x)
   {
-    $x = (($x - (1 / 3) + 1.0) % 2.0 * 0.5 - 0.5) * 16;
+    // Use fmod for floating-point modulus to avoid implicit float->int conversion
+    $x = fmod(($x - (1 / 3) + 1.0), 2.0);
+    $x = ($x * 0.5 - 0.5) * 16;
     return max(1.0 - $x * $x, 0.0);
   }
   /**
